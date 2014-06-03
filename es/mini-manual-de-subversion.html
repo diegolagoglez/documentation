@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Mini manual de Subversion</title>
+</head>
+<body>
+<h2>Mini manual de Subversion</h2>
+<h3>Índice</h3>
+<ol>
+<li><a href="#introduccion">Introducción</a></li>
+<li><a href="#queessubversion">Qué es Subversion</a></li>
+<li><a href="#creacionrepositorio">Creación y configuración de un repositorio</a></li>
+<li><a href="#seguridadbasica">Seguridad básica en un repositorio de Subversion</a></li>
+<li><a href="#estructura">Estructura recomendada de un repositorio</a></li>
+<li><a href="#creacionproyectos">Creación y manejo de proyectos</a></li>
+<li><a href="#comandosbasicos">Comandos básicos</a></li>
+<li><a href="#creacionbranches">Creación y manejo de <em>branches</em> (ramas)</a></li>
+<li><a href="#resumencomandos">Resumen de comandos</a></li>
+<li><a href="#anexo">Anexo A: Script de inicio del servidor de Subversion &mdash; svnserve</a></li>
+</ol>
+<h3 id="introduccion">Introducción</h3>
+<p>Este documento describe el funcionamiento básico de un servidor y los clientes de la aplicación de control de versiones <a href="http://subversion.tigris.org">Subversion</a> bajo la plataforma Linux.</p>
+<p>Con este documento será posible configurar el servidor, crear nuevos repositorios y manejar proyectos.</p>
+<h3 id="queessubversion">Qué es Subversion</h3>
+<p>Subversion es un <a href="http://es.wikipedia.org/wiki/Sistema_de_control_de_versi%C3%B3n">sistema de control de versiones</a>, generalmente de código fuente de proyectos aunque se puede utilizar para cualquier contenido susceptible de ser versionado, desarrollado por la empresa Tigris y publicado bajo licencia libre Apache/BSD.</p>
+<p>Este software está destinado a ser el sustituto natural del obsoleto <a href="http://es.wikipedia.org/wiki/CVS">CVS</a>.</p>
+<p>La filosofía de Subversion es tener un repositorio central, donde se guarda el proyecto, y todos los clientes acceden a dicho repositorio, tanto para descargarse el proyecto como para subir los cambios realizados por los propios clientes.</p>
+<p>Este enfoque es contrario a otros sistema de control de versiones para proyectos grandes como <a href="http://es.wikipedia.org/wiki/Git">Git</a>, donde cada cliente se trata como un cliente P2P y no hay un repositorio central, sino que todos los clientes son parte del repositorio.</p>
+<h3 id="creacionrepositorio">Creación y configuración de un repositorio</h3>
+<p>El repositorio básico de Subversion se crea en una máquina, generalmente dedicada, que va a actuar como servidor principal de desarrollo y es a esta máquina a la que tienen que acceder todos los clientes tanto para actualizar sus proyectos como para subir los cambios nuevos.</p>
+<p>Para crear un repositorio nuevo donde albergar los proyectos, se usa el siguiente comando:</p>
+<p style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">root@server:~:# svnadmin create /path/to/repository
+</p>
+<p>Con este comando, en el directorio dado, creamos todos los archivos necesarios para que dicho directorio se comporte como un repositorio de Subversion. Debajo de este directorio se guardarán todas las versiones de nuestros proyectos así como la configuración de dicho repositorio y algunos elementos para la seguridad de acceso.</p>
+<p>Además de tener el repositorio en la máquina servidor, es necesario tener una aplicación corriendo, <code>svnserve</code>, para que se pueda acceder de forma remota al repositorio. Este servidor viene cuando se instala Subversion y para arrancarlo basta con utilizar el comando siguiente:</p>
+<p style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">root@server:~:# svnserve -d -T -r /path/to/repository
+</p>
+<p>Con la opción -d hacemos que svnserve se comporte como un daemon, con -T hacemos que use threads en lugar de procesos y con -r indicamos donde está el repositorio.</p>
+<p>En caso de que queramos arrancarlo cada vez que se inicie el sistema, será necesario configurar un script de inicio que hay que ubicar en el directorio /etc/init.d/ (en máquinas Debian y Ubuntu). Un ejemplo de este script se puede ver en el Anexo A de este documento.</p>
+<p>Una vez funcionado el repositorio, para acceder al mismo mediante el comando svn, es necesario poner la ruta de la misma forma que una URL. Un ejemplo podría ser el siguiente (lista los contenidos del repositorio):</p>
+<p style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">diego@server:~:$ svn list svn://servidor/repositorio
+</p>
+<h3 id="seguridadbasica">Seguridad básica en un repositorio de Subversion</h3>
+<p>La configuración de la seguridad en un repositorio de Subversion se encuentra en el directorio <code>/ruta/al/repositorio/<strong>conf</strong></code>. En en este directorio se encuentran tres archivos de configuración para el servidor <code>svnserve</code> junto con la seguridad de acceso al mismo:</p>
+<ul>
+<li><code>authz</code> : En este archivo se definen los grupos de usuarios del repositorio y sus correspondientes permisos. Con esto se consigue que sólo determinados usuarios tengan acceso de lectura y escritura y otros sólo de lectura.</li>
+<li><code>passwd</code> : En este archivo de definen los usuarios y contraseñas de todos los usuarios que pueden acceder al repositorio. Hay que tener cuidado con este archivo ya que las contraseñas no están encriptadas (uno de los grandes fallos del svnserve). Si se requiere que las contraseñas estén encriptadas, se debe usar mod_dav mediante Apache (http) para el acceso al repositorio.</li>
+<li><code>svnserve.conf</code> : En este archivo está la configuración del servidor svnserve para el acceso remoto al repositorio con los siguientes campos:
+<ul>
+<li><code>anon-access = [none | read | write]</code> : Con none, nadie puede acceder al repositorio para lectura si no tiene usuario y contraseña. Con read pueden acceder todos sólo para lectura. Y con write pueden acceder todos sin usuario ni contraseña para lectura y escritura (esto no está recomendado ya que no se controlan los usuarios que hacen los cambios).</li>
+<li><code>auth-access = [none | read | write]</code> : Aquí basta con poner write para que todos los usuarios necesiten usuario y contraseña para acceder al repositorio como lectura y escritura.</li>
+<li><code>password-db</code> : Indica la ubicación de un archivo de contraseñas.</li>
+<li><code>auth-db</code> : Indica la ubicación del archivo de reglas de acceso a usuarios y grupos.</li>
+<li><code>realm</code> : Indica el nombre del repositorio.</li>
+</ul>
+</li>
+</ul>
+<p>Además de esta configuración básica, se puede usar Subversion mediante un túnel por SSH poniendo las URL de la forma <code>svn+ssh://servidor/repositorio/</code>. Para ello es necesario configurar el servidor <code>svnserve</code> añadiendo la clausula <code>[tunnels]</code> en <code>svnserve.conf</code> e indicando cual va a ser el programa de <em>tunneling</em> (rsh = ssh, por ejemplo).</p>
+<h3 id="estructura">Estructura recomendada de un repositorio</h3>
+<p>Los repositorio de Subversion pueden tener cualquier estructura ya que se comportan igual que un directorio local al que pueden acceder varios usuarios, pero el equipo de desarrollo de Subversion recomienda una estructura de directorios para cada proyecto de la siguiente forma:</p>
+<ul>
+<li>El proyecto debe estar en un directorio con un nombre los suficientemente descriptivo, por ejemplo <code>svn://servidor/repositorio/miproyecto/</code>.</li>
+<li>Dentro del directorio del proyecto, debe haber tres subdirectorios de la siguiente forma:
+<ul>
+<li><code>svn://servidor/repositorio/miproyecto/trunk</code> : En este directorio se encontrará la rama principal de desarrollo (tronco), es decir, el código fuente principal del proyecto sobre el que se realizan los cambios principales y se pone en producción.</li>
+<li><code>svn://servidor/repositorio/miproyecto/tags</code> : En este directorio se encontrarán las diferentes versiones del proyecto que ya no se van a cambiar a lo largo del desarrollo del mismo. Es algo así como un versión (<em>release</em>) inmodificable.</li>
+<li><code>svn://servidor/repositorio/miproyecto/branches</code> : En este directorio se encontrarán versiones del proyecto de desarrollo, es decir, si en un momento dado una versión de desarrollo va a modificar tantos elementos de la rama principal (<em>trunk</em>) que no funcione dicha rama, se crea un nuevo <em>branch</em> donde se hacen los cambios pertinentes en desarrollo. Una vez que está listo el desarrollo en el <em>branch</em>, se combinan el <em>branch</em> con el <em>trunk</em> para introducir los cambios de desarrollo en la rama principal. Una vez finalizado, el <em>branch</em> creado para el desarrollo puede borrarse.</li>
+</ul>
+</li>
+<li>Para desplegar el proyecto en producción se utiliza la rama principal de la siguiente forma: <code>svn checkout svn://servidor/repositorio/miproyecto/trunk</code>.</li>
+<li>Para desarrollo es lo mismo excepto en caso de estar desarrollando un branch donde el checkout es de ese branch de la siguiente forma: <code>svn checkout svn://servidor/repositorio/miproyecto/braches/mi-branch-de-desarrollo</code>.</li>
+<li>En caso de necesitar cambiar en desarrollo de la rama principal a una rama de tipo <em>branch</em>, se puede usar el modificador <code>switch</code> del comando <code>svn</code> de la siguiente forma (dentro del directorio local de la rama principal &mdash;trunk&mdash;): <code>svn switch svn://servidor/repositorio/miproyecto/branches/mi-branch-de-desarrollo</code>.</li>
+<li>Para volver a la rama principal desde un <em>branch</em>, ubicados en el directorio local del <em>branch</em>, se ejecuta el siguiente comando: <code>svn switch svn://servidor/repositorio/miproyecto/trunk</code>.</li>
+</ul>
+<h3 id="creacionproyectos">Creación y manejo de proyectos</h3>
+<p>La primera vez que se importa un proyecto al repositorio, suponiendo que ya esté dicho repositorio creado, se realiza mediante el siguiente comando, ubicado donde está nuestros archivos fuente del proyecto:</p>
+<p style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">diego@server:/proyectos/miproyecto:$ svn import -m "Primera importación." svn://servidor/repositorio
+</p>
+<p>El parámetro -m indica el mensaje de la importación, aunque si no se especifica nada, se ejecuta el editor que exista en la variable de entorno <code>$SVN_EDITOR</code> o <code>$EDITOR</code>.</p>
+<p>Una vez hecha la primera importación, ya no es necesario seguir disponiendo de la copia local del proyecto recién importado. De hecho, si se siguen haciendo cambios en el directorio importado, éstos no serán incluidos en el repositorio.</p>
+<p>Para que los cambios sean seguidos por el repositorio, es necesario hacer una descarga inicial del proyecto (de cualquier proyecto). Para ello, ubicado en el directorio donde se desea descargar el proyecto, se ejecuta el siguiente comando:</p>
+<p style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">diego@server:/proyectos:$ svn checkout svn://servidor/repositorio/miproyecto
+</p>
+<p>A partir de aquí, ya se pueden hacer cambios en el código fuente del proyecto y que dichos cambios sean seguidos por el repositorio. Hay que tener en cuenta que los cambios no son seguidos automáticamente sino que es necesario usar los comandos del siguiente punto para tener un control total de los proyectos.</p>
+<p>Además, una vez hecho el <em>checkout</em>, ya no es necesario disponer de copia local del proyecto si no se está desarrollando. Se puede borrar sin problemas siempre que todos los cambios estén en el repositorio.</p>
+<h3 id="comandosbasicos">Comandos básicos</h3>
+<p>Una vez descargado localmente el proyecto en el que se va a trabajar, existen una serie de comandos para mantener actualizado tanto el proyecto en el repositorio como la copia local. Estos comandos son de la forma <code>svn [comando]</code> y teniendo que ejecutarse en el directorio o algún subdirectorio de la copia local. Los subcomandos <code>[comando]</code> son alguno de los siguientes:</p>
+<ul>
+<li><code>update</code> : Actualizar la copia local del proyecto con la versión más reciente del repositorio.</li>
+<li><code>commit</code> : Subir al repositorio los cambios realizados en la copia local. Además, hay que poner un mensaje de lo que se ha hecho en dichos cambios (con -m o mediante el editor que esté en la variable de entorno <code>$SVN_EDITOR</code>).</li>
+<li><code>add</code> : Con este comando se añade un nuevo archivo al repositorio. Hay que tener en cuenta que sólo se marca como añadido y hasta que no se haga el <code>commit</code> no se añade realmente.</li>
+<li><code>checkout</code> : Para descargar por primera vez una copia remota del proyecto a la máquina local.</li>
+<li><code>revert</code> : Restituye el archivo de copia de trabajo con los cambios de la última versión de la que se ha actualizado la copia local. Este comando no contacta con el servidor.</li>
+<li><code>list</code> : Lista los contenidos de un directorio dentro del repositorio.</li>
+<li><code>status</code> : Comprueba el estado de los archivos de la copia local con respecto a la última actualización de dicha copia. No realiza ninguna conexión con el repositorio.</li>
+<li><code>info</code> : Muestra información de algún directorio de algún proyecto del repositorio.</li>
+<li><code>lock</code> : Bloquea una ruta en el repositorio para que ningún usuario pueda hacer <code>commit</code> sobre dicha ruta.</li>
+<li><code>unlock</code> : Desbloquea rutas bloqueadas con <code>lock</code>.</li>
+<li><code>blame</code> : Imprime los cambios de un archivo respecto de versiones y quién los ha hecho.</li>
+<li><code>merge</code> : Une las diferencias entre dos copias de los archivos de trabajo que generalmente están en conflicto.</li>
+<li><code>resolved</code> : Indica que un conflicto ha sido resuelto.</li>
+<li><code>log</code> : Muestra los mensajes de log de la copia de trabajo. Es necesario hacer un <code>update</code> para que estén todos los logs del proyecto.</li>
+<li><code>switch</code> : Actualiza la copia de trabajo a un directorio distinto. Esto es útil para cambiar entre diferente branches que se verán en el siguiente punto.</li>
+</ul>
+<h3 id="creacionbranches">Creación y manejo de <em>branches</em> (ramas)</h3>
+<p>Un <em>branch</em> es una copia completa, generalmente de la rama principal de desarrollo, que se usa para desarrollar una funcionalidad que afecta al funcionamiento correcto del proyecto por lo que no se puede desarrollar directamente sobre el <em>trunk</em> del proyecto.</p>
+<p>Mediante un <em>branch</em> no se interfiere en la rama principal del proyecto pudiendo combinar los cambios del <em>branch</em> al <em>trunk</em> en el momento de su finalización. Además, se pueden hacer <em>branches</em> de <em>branches</em> y combinarlos finalmente en la rama principal.</p>
+<p>Para crear un <em>branch</em> a partir de la rama principal del proyecto, se puede ejecutar el siguiente comando:</p>
+<p style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">diego@server:/proyectos/miproyecto:$ svn copy svn://sevidor/repositorio/miproyecto/trunk svn://servidor/repositorio/miproyecto/branches/mi-branch-de-desarrollo -m "Creando un branch para pruebas."
+</p>
+<p>Una vez creado la <em>branch</em>, para trabajar con ella es de la misma forma que para trabajar con el <em>trunk</em>: se hace un <code>checkout</code> del proyecto inicialmente, para luego seguir haciendo <code>commits</code> y <code>updates</code>.</p>
+<p>Hay que tener en cuenta que tu <em>branch</em> debería estar lo más actualizado posible con respecto a la copia de la rama principal, independientemente del desarrollo que se esté haciendo sobre la misma. Para realizar una actualización una <em>branch</em>, lo que hay que hacer es una combinación de la <em>branch</em> de desarrollo con la rama principal de la siguiente forma:</p>
+<p style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">diego@server:/proyectos/miproyecto-branch1:$ svn merge svn://servidor/repositorio/miproyecto/trunk
+</p>
+<p>Posteriormente habría que examinar los cambios con <code>svn diff</code> y, finalmente, si todos los cambios son correctos, se deben subir los cambios al repositorio mediante <code>svn commit</code>.</p>
+<p>Para mezclar los cambios de un <em>branch</em> con la rama principal una vez terminados los cambios, se utiliza el siguiente comando:</p>
+<p style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">diego@server:/proyectos/miproyecto:$ svn merge -reintegrate svn://servidor/repositorio/miproyecto/branches/mi-branch-de-desarrollo<br />
+diego@server:/proyectos/miproyecto:$ svn commit -m "Combinando mi branch con el trunk."
+</p>
+<h3 id="resumencomandos">Resumen de comandos</h3>
+<table class="alignleft">
+<thead>
+<tr>
+<td>Acción</td>
+<td>Comando</td>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crear una <em>branch</em> o una <em>tag</em></td>
+<td><code>svn copy URL1 URL2</code></td>
+</tr>
+<tr>
+<td>Intercambiar la copia de trabajo con una <em>branch</em> o una <em>tag</em></td>
+<td><code>svn switch URL</code></td>
+</tr>
+<tr>
+<td>Sincronizar una <em>branch</em> con el <em>trunk</em></td>
+<td><code>svn merge TRUNK_URL; svn commit</code></td>
+</tr>
+<tr>
+<td>Combinar una <em>branch</em> con el <em>trunk</em></td>
+<td><code>svn merge &ndash;&ndash;reintegrate BRANCH_URL; svn commit</code></td>
+</tr>
+<tr>
+<td>Unir cambios</td>
+<td><code>svn merge -c REV URL; svn commit</code></td>
+</tr>
+<tr>
+<td>Prever una combinación (no hace nada)</td>
+<td><code>svn merge &ndash;&ndash;dry-run</code></td>
+</tr>
+<tr>
+<td>Abandonar los cambios</td>
+<td><code>svn revert -R .</code></td>
+</tr>
+<tr>
+<td>Copiar algo del historial</td>
+<td><code>svn copy URL@REV local-path</code></td>
+</tr>
+<tr>
+<td>Deshacer los cambios enviados</td>
+<td><code>svn merge -c REV URL; svn commit</code></td>
+</tr>
+<tr>
+<td>Crear una <em>tag</em> desde la copia de trabajo</td>
+<td><code>svn copy . TAG_URL</code></td>
+</tr>
+<tr>
+<td>Mover una <em>branch</em> o una <em>tag</em></td>
+<td><code>svn mv URL1 URL2</code></td>
+</tr>
+<tr>
+<td>Eliminar una <em>branch</em> o una <em>tag</em></td>
+<td><code>svn rm URL</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="anexo">Anexo A: Script de inicio del servidor de Subversion &ndash; svnserve</h3>
+<div style="font-family:monospace;white-space:pre;background:#F0F0F0;border:1px solid #DDDDDD;padding:7px;">#! /bin/sh -e
+#### BEGIN INIT INFO
+# Provides:          synserve
+# Required-Start:    $syslog $time $local_fs $remote_fs
+# Required-Stop:     $syslog $time $local_fs $remote_fs
+# Default-Start:     2 3 4 5
+# Default-Stop:      S 0 1 6
+# Short-Description: Subversion repository server
+# Description:       Debian init script for the Subversion repository server
+### END INIT INFO
+#
+# Author: Rick Beton
+#
+set -e
+PATH=/bin:/usr/bin:/sbin:/usr/sbin
+REPOS=/var/svnroot
+DAEMON=/usr/bin/svnserve
+test -x $DAEMON || exit 0
+. /lib/lsb/init-functions
+case "$1&#8243; in
+    start)
+        log_daemon_msg "Starting Subversion server" "svnserve"
+        sudo -u svn $DAEMON -d -T -r $REPOS
+        # start-stop-daemon &ndash;&ndash;start &ndash;&ndash;user svn &ndash;&ndash;oknodo &ndash;&ndash;exec $DAEMON &ndash;&ndash; -d -T -r $REPOS
+        log_end_msg $?
+    ;;
+    stop)
+        log_daemon_msg "Stopping Subversion server" "svnserve"
+        killall $DAEMON
+        # start-stop-daemon &ndash;&ndash;stop &ndash;&ndash;oknodo &ndash;&ndash;name svnserve
+        log_end_msg $?
+    ;;
+    force-reload|restart)
+        $0 stop
+        $0 start
+    ;;
+    *)
+        echo "Usage: $0 {start|stop|restart|force-reload}"
+        exit 1
+    ;;
+esac
+exit 0
+</div>
+</body>
+</html>
