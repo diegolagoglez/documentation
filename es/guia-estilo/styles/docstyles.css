@@ -1,0 +1,252 @@
+@CHARSET "UTF-8";
+
+body {
+	font-family: Helvetica, Verdana, Tahoma, sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+/* TOC (generado por jqTOC - plugin de jquery) */
+div#toc_container {
+	margin: 2em;
+}
+
+div#toc_container div#toc_content {
+	padding: .5em;
+}
+
+/* cabecera */
+
+div#header {
+	margin: 0;
+	border-bottom: 3px solid #999999;
+	padding: 1em 17em 1em 3em;
+	color: white;
+	background-color: #333333;
+}
+
+div#header h1 {
+	margin: 0;
+}
+
+/* contenido */
+
+div#contents {
+	padding: 1em 18em 2em 2em;
+	margin: 0;
+}
+
+div#contents h2 {
+	padding: 0 0 0 .5em;
+	border-bottom: 1px solid silver;
+}
+
+div#contents h3 {
+	font-style: italic;
+	padding: 0 0 0 1em;
+}
+
+div#contents p code, div#contents ul code, div#contents ol code {
+	background-color: #F0F0F0;
+	color: #000040;
+}
+
+div#contents p code em, div#contents ul code em, div#contents ol code em {
+	background-color: #F0F0F0;
+	color: #303060;
+}
+
+div#contents p.terminal {
+	white-space: pre;
+	font-family: monospace;
+	background-color: black;
+	color: white;
+	overflow: auto;
+	border: 1px solid #444444;
+	padding: 5px;
+	padding-right: 2px;
+}
+
+div#contents p.terminal:before {
+	content: "Terminal";
+	font-weight: bold;
+	font-size: .9em;
+	color: white;
+	background: #8F6232 url('../images/terminal-bar.png') left center repeat-x;
+	display: block;
+	padding: 1px 3px;
+	margin: -3px;
+	margin-right: 0;
+}
+
+div#contents p.source {
+	white-space: pre;
+	font-family: monospace;
+	padding: 5px;
+	overflow: auto;
+	border: 1px solid silver;
+	padding-right: 3px;
+}
+
+div#contents p.source:before {
+	content: "Código Fuente";
+	color: white;
+	font-weight: bold;
+	display: block;
+	font-size: .9em;
+	background: steelblue url('../images/source-bar.png') left center repeat-x;
+	padding: 2px 3px;
+	margin: -3px;
+	margin-right: 0;
+}
+
+div#contents p.todo {
+	background: #EEF3FF url('../images/todo.png') .2em center no-repeat;
+	border: 2px solid #5F75A9;
+	padding: .5em .5em .5em 5em;
+	-moz-border-radius: 0 .7em 0 .7em;
+}
+
+div#contents p.warning {
+	border: 2px solid #9B3B1B;
+	background: #FFFCDE url('../images/warning.png') .7em center no-repeat;
+	padding: .5em .5em .5em 5em;
+	-moz-border-radius: 0 .7em 0 .7em;
+}
+
+div#contents p.warning code {
+	background-color: #FFE398;
+	color: #4F280C;
+}
+
+div#contents p.info {
+	background: #FFF5EE url('../images/info.png') .8em center no-repeat;
+	border: 2px solid #773500;
+	padding: .5em .5em .5em 5em;
+	-moz-border-radius: 0 .7em 0 .7em;
+}
+
+div#contents p.info code {
+	background-color: #FFDBC0;
+	color: #4F280C;
+}
+
+div#contents p.source span.keyword {
+	color: navy;
+}
+
+div#contents p.source span.number {
+	color: red;
+}
+
+div#contents p.source span.string {
+	color: fuchsia;
+}
+
+div#contents p.source span.var {
+	color: darkred;
+}
+
+div#contents p.source span.bool, div#contents p.source span.null {
+	color: green;
+}
+
+div#contents p.source span.comment {
+	color: gray;
+}
+
+div#contents p.source span.commentkeyword  {
+	color: gray;
+	font-weight: bold;
+}
+
+div#contents .aligncenter {
+	text-align: center;
+}
+
+div#contents .alignleft {
+	text-align: left;
+}
+
+div#contents .alignright {
+	text-align: right;
+}
+
+span.commentkeyword {
+	font-family: monospace;
+	color: gray;
+}
+
+div#contents ul.dirtree, div#contents ul.dirtree ul, div#contents ul.dirtree ul ul  {
+	list-style-type: none;
+	font-family: monospace;
+}
+
+div#contents li.dir {
+	color: red;
+}
+
+div#contents li.file {
+	color: blue;
+}
+
+div#contents ul.properties {
+	list-style-type: none;
+	list-style-position: inside;
+	border: 1px solid #EEEEEE;
+	border-left: 5px solid #E4E4E4;
+	margin-left: 1.2em;
+	padding: .3em;
+	padding-left: 1em;
+	background-color: #FAFAFA;
+}
+
+div#contents ul.properties li em {
+	color: #444444;
+}
+
+div#contents ul.properties li:before {
+	content: "→ ";
+	color: #999999;
+	font-size: .9em;
+}
+
+/* pie de página y enlaces del pie y del contenido */
+
+div#footer {
+	margin: 0;
+	border-top: 2px solid #999999;
+	background-color: #333333;
+	font-size: .9em;
+	padding: .6em;
+	text-align: center;
+	color: white;
+}
+
+div#contents a {
+	color: #627492;
+	text-decoration: none;
+	border-bottom: 1px dotted;
+}
+
+div#footer a {
+	color: #AAAAAA;
+	text-decoration: none;
+	border-bottom: 1px dotted;
+}
+
+div#contents a:hover {
+	color: #30358F;
+}
+
+div#footer a:hover {
+	color: white;
+}
+
+/* estilos genéricos */
+
+span.note {
+	color: silver;
+	font-style: italic;
+	font-size: .9em;
+}

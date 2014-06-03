@@ -1,0 +1,17 @@
+
+/* El contenido tiene otro márgen en la impresión. */
+
+div#header {
+	padding: 0;
+	margin: 1em !important;
+}
+
+div#contents {
+	margin: 2em !important;
+	padding: 0;
+}
+
+div#contents p.source:before {
+	color: white !important;
+	background: gray !important;
+}

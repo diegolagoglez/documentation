@@ -1,0 +1,954 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>Guía de estilo de programación</title>
+<link rel="stylesheet" type="text/css" href="styles/jquery.jqTOC.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="styles/docstyles.css" media="screen,print" />
+<link rel="stylesheet" type="text/css" href="styles/print.css" media="print" />
+<script type="text/javascript" src="scripts/jquery.js"></script>
+<script type="text/javascript" src="scripts/jquery.jqTOC.js"></script>
+<script type="text/javascript" src="scripts/main.js"></script>
+</head>
+<body>
+
+<div id="header">
+	<h1>Guía de estilo de programación</h1>
+</div>
+
+<div id="contents">
+
+<h2>Introducción</h2>
+
+<p>
+El estilo de programación son las series de convenciones seguidas al desarrollar código fuente
+en un determinado lenguaje de programación.
+</p> 
+
+<p>
+Esta guía describe las convenciones usadas para el desarrollo en PHP aunque se pueden
+extender perfectamente a otros lenguajes con sintaxis similar.
+</p> 
+
+<p>
+El estilo de programación descrito en esta guía es sólo una recomendación, aunque se insta
+fervientemente a su utilización para garantizar que todo el código fuente generado por varias
+personas tenga un estilo similar con lo que se consigue que las revisiones de código entre los
+distintos programadores sea mucho más sencilla.
+</p> 
+
+<h2>Estilo genérico usado</h2>
+
+<p>
+Dentro de los estilos más genéricos de programación, se usará el estilo BSD KNF
+(BSD Kernel Normal Form) y se parece mucho al estilo K&amp;R.
+</p>
+
+<p>
+Para más información véase la <a href="http://en.wikipedia.org/wiki/Indent_style">Wikipedia</a>.
+</p>
+
+<h2>No se debería usar</h2>
+
+<p>
+No se deberían usar los siguientes estilos de programación:
+</p>
+
+<ul>
+<li>El <a href="http://en.wikipedia.org/wiki/Allman_style#Allman_style_.28bsd_in_Emacs.29">estilo Allman</a>.</li>
+<li>El <a href="http://en.wikipedia.org/wiki/Allman_style#Whitesmiths_style">estilo Whitesmiths</a>.</li>
+<li>El <a href="http://en.wikipedia.org/wiki/Allman_style#GNU_style">estilo GNU</a>.</li>
+<li>La <a href="http://en.wikipedia.org/wiki/Hungarian_notation">notación Húngara</a>.</li>
+<li>La notación de nombres de elementos de varias palabras con barra baja (_).</li>
+</ul>
+
+<h2>Términos usados</h2>
+
+<h3>Camel Case</h3>
+
+<p>
+Es la práctica de escribir frases o palabras compuestas eliminando los espacios y
+poniendo en mayúscula la primera letra de cada palabra.
+</p>
+
+<h3>Lower Camel Case</h3>
+
+<p>
+Similar al Camel Case sólo que la primera letra de la primera palabra es también en
+minúscula. Por ejemplo, la frase "generar datos aleatorios" pasada a <em>lowerCamelCase</em> sería
+"generarDatosAleatorios".
+</p>
+
+<h3>Upper Camel Case</h3>
+
+<p>
+Similar al Camel Case siendo la primera letra de la primera palabra en mayúscula.
+Por ejemplo, la frase "generar datos aleatorios" pasada a <em>UpperCamelCase</em> sería
+"GenerarDatosAleatorios".
+</p>
+
+<h2>Palabras reservadas</h2>
+
+<p>
+Las palabras reservadas del lenguaje así como las construcciones que se asimilan a funciones
+(<code>array()</code>, <code>list()</code>, etc.) se escribirán todas en minúsculas.
+</p>
+
+
+<h2>Indentación (sangrado)</h2>
+
+<p>
+La indentación o sangrado debe ser hecha mediante <strong>tabulaciones</strong> y no se deben
+insertar espacios. Se recomienda que el tamaño de las tabulaciones sea de 4 espacios aunque
+esto queda a opción del programador.
+</p>
+
+<h2>Variables</h2>
+
+<p>
+Las variables usadas en cualquier aplicación deben tener nombres que las identifiquen,
+es decir, nombres como "a", "b" o "c" no se deberían usar sino que deberían tener un
+nombre coherente con con lo que contienen. En el siguiente ejemplo los nombres de
+las variables son cortos por lo que no se identifica su significado:
+</p>
+
+<p class="source">
+<span class="var">$a</span> = <span class="number">0</span>, <span class="var">$b</span> = <span class="number">0</span>, <span class="var">$c</span> = <span class="number">0</span>;
+<span class="keyword">if</span>(<span class="var">$a</span> &gt; <span class="number">10</span> &amp;&amp; <span class="var">$b</span> &gt; <span class="number">20</span> &amp;&amp; <span class="var">$c</span> &gt; <span class="number">30</span>) {
+	<span class="keyword">return</span> <span class="bool">true</span>;
+} <span class="keyword">else</span> {
+	<span class="keyword">return</span> <span class="bool">false</span>;
+}
+</p>
+
+<p>
+Este ejemplo debería ser:
+</p>
+
+<p class="source">
+<span class="var">$hora</span> = <span class="number">0</span>, <span class="var">$minuto</span> = <span class="number">0</span>, <span class="var">$segundo</span> = <span class="number">0</span>;
+<span class="keyword">if</span>(<span class="var">$hora</span> &gt; <span class="number">10</span> &amp;&amp; <span class="var">$minuto</span> &gt; <span class="number">20</span> &amp;&amp; <span class="var">$segundo</span> &gt; <span class="number">30</span>) {
+	<span class="keyword">return</span> <span class="bool">true</span>;
+} <span class="keyword">else</span> {
+	<span class="keyword">return</span> <span class="bool">false</span>;
+}
+</p>
+
+<p>
+Sólo en el caso de que la variable sea lo demasiado genérica para no tener un
+nombre concreto (por ejemplo el índice de un bucle) ésta se declarará con el nombre
+de "i" siguiendo el orden alfabético en caso de varios bucles anidados ("i", "j", "k",...).
+</p>
+
+<p>
+Los nombres largos de las variables se escribirán en <em>lowerCamelCase</em>.
+</p>
+
+<h2>Variables especiales</h2>
+
+<p>
+Existen variables que no son variables de tipo simple sino que son compuestas, por ejemplo, los arrays y las estructuras.
+</p>
+
+<p>
+En PHP no existen estructuras ya que gracias a los arrays asociativos no son necesarias.
+</p>
+
+<p>
+Para crear un array vacío, la sintaxis es la estándar:
+</p>
+
+<p class="source">
+<span class="var">$miArray</span> = <span class="keyword">array</span>();
+</p>
+
+<p>
+Para crear un array monodimensional, la sintaxis sería la misma que la anterior:
+</p>
+
+
+<p class="source">
+<span class="var">$miArray</span> = <span class="keyword">array</span>(<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>);
+</p>
+
+<p>
+Para crear un array multidimensional (o asociativo), éste se pondría en líneas separadas
+e indentadas una tabulación respecto al nombre de la variable que lo contiene de la siguiente forma:
+</p>
+
+<p class="source">
+<span class="var">$miArrayMultidimensional</span> = <span class="keyword">array</span>(
+	<span class="number">1</span> =&gt; <span class="string">"primero"</span>,
+	<span class="number">2</span> =&gt; <span class="string">"segundo"</span>,
+	<span class="number">3</span> =&gt; <span class="string">"tercero"</span>,
+	<span class="number">4</span> =&gt; <span class="string">"cuarto"</span>
+);
+</p>
+
+<p>
+En caso de ser un array asociativo, para mejorar la legibilidad, se debería indentar
+el valor de cada entrada a la misma altura de la siguiente forma:
+</p>
+
+<p class="source">
+<span class="var">$miArrayAsociativo</span> = <span class="keyword">array</span>(
+	<span class="string">"Barcelona"</span>		=&gt; <span class="number">08000</span>,
+	<span class="string">"Guadalajara"</span>		=&gt; <span class="number">19000</span>,
+	<span class="string">"Leon"</span>			=&gt; <span class="number">24000</span>,
+	<span class="string">"Madrid"</span>		=&gt; <span class="number">28000</span>,
+	<span class="string">"Santa Cruz de Tenerife"</span>=&gt; <span class="number">38000</span>
+);
+
+<span class="var">$miArrayVariado</span> = <span class="keyword">array</span>(
+	<span class="string">"primero"</span> =&gt; <span class="number">1</span>,
+	<span class="string">"segundo"</span> =&gt; <span class="keyword">array</span>(
+		<span class="string">"hora"</span>	  =&gt; <span class="number">16</span>,
+		<span class="string">"minuto"</span>  =&gt; <span class="number">58</span>,
+		<span class="string">"segundo"</span> =&gt; <span class="number">16</span>
+	),
+	<span class="string">"tercero"</span> =&gt; <span class="null">null</span>
+);
+</p>
+
+<p>
+En caso de que se puedan declarar estructuras del estilo de C, serían de la siguiente forma:
+</p>
+
+<p class="source">
+<span class="keyword">struct</span> MiStruct {
+	<span class="keyword">int</span> valor1;
+	<span class="keyword">int</span> valor2;
+	<span class="keyword">float</span> valor3;
+	<span class="keyword">char*</span> nombre;
+};
+</p>
+
+<h2>Funciones</h2>
+
+<p>Los nombres de las funciones serán en <em>lowerCamelCase</em>. Los delimitadores del cuerpo
+de la función, en caso de que sean llaves (<code>{</code> y <code>}</code>) estarán: el de apertura en la misma
+línea que la declaración de la función separado por un espacio (aunque se permite que
+esté en la siguiente línea). La llave de cierre debe estar en una línea a parte y no debe
+haber más código que la propia llave de cierre. Por ejemplo:
+</p>
+
+<p class="source">
+<span class="keyword">function</span> getUserName(<span class="var">$parametros</span>) {
+	<span class="comment">// código</span>
+}
+</p>
+
+<p>
+En caso de que en las funciones se declare el tipo devuelto, este estará en una línea a
+parte encima del nombre de la función.
+</p>
+
+<p class="source">
+<span class="keyword">bool</span>
+getUserName(<span class="keyword">void*</span> parametros) {
+	<span class="comment">// código</span>
+}
+</p>
+
+<p>
+En caso de que haya muchos parámetros, estos estarán en múltiples líneas indentados con
+tabulaciones y espacios hasta coincidir en la misma columna que el primer parámetro. Por ejemplo:
+</p>
+
+<p class="source">
+<span class="keyword">function</span> getDataFromDB(<span class="var">$param1</span>,
+		       <span class="var">$param2</span>,
+		       <span class="var">$param3</span>,
+		       <span class="var">$param4</span>) {
+	<span class="comment">// código</span>
+}
+</p>
+
+<p>
+Los nombres de los parámetros, igual que los nombres de las variables, deben ser
+nombres concretos del tipo de parámetro en cuestión.
+</p>
+
+<p>
+Dentro de la implementación de la función sólo debería haber un <code>return</code> aunque esta regla
+que se puede omitir siempre y cuando se mejore la legibilidad del código así como el rendimiento.
+</p>
+
+<h2>Clases e interfaces</h2>
+
+<p>
+Los nombres de las clases deben estar escritos en <em>UpperCamelCase</em>. La indentación de las
+mismas debe ser de una tabulación con respecto al margen izquierdo mientras que los campos y los
+métodos deben estar indentados una tabulación con respecto a la clase.
+</p>
+
+<p>
+La implementación de los métodos deben estar indentadas con una tabulación respecto al nombre del método.
+El resto de estilos es similar al de las funciones normales.
+</p>
+
+<p>
+Dentro de las clases, los métodos deben estar separados por un retorno de carro entre sí y por un
+retorno de carro tanto del inicio y final de la clase como de las propiedades.
+</p>
+
+<p>
+Las propiedades similares pueden estar agrupadas (sin separar con retornos de carro) pero no en la
+misma línea, mientras que las propiedades que no tengan relación deben estar separadas por un
+retorno de carro igual que los métodos.
+</p>
+
+<p>
+Si un método o propiedad tiene documentación, se aplica la misma normal de separación.
+</p>
+
+<p>
+Tanto la clase como los métodos y propiedades deben estar documentados. Así mismo,
+en la clase deben existir los elementos <span class="commentkeyword">@author</span> y <span class="commentkeyword">@version</span>
+de la documentación aunque se pueden incluir más como <span class="commentkeyword">@internal</span>, <span class="commentkeyword">@since</span>, etc.
+</p>
+
+<p>
+En caso de que un clase extienda otra o implemente una interfaz, la extensión debe estar
+en la misma línea que el nombre de la clase.
+</p>
+
+<p>
+Los modificadores de clase o de método, como <code>abstract</code>, <code>static</code>, etc., también
+deben estar en la misma línea que el nombre que modifican.
+</p>
+
+<p>
+Los nombres de las interfaces, por convención, deben comenzar por "I" mayúscula, por ejemplo: <code>IConfig</code>.
+</p>
+
+<p class="source">
+<span class="number">&lt;?php</span>
+
+	<span class="comment">/**
+	 * Documentación para la clase 'MiClaseDeEjemplo'.
+	 *
+	 * @author Diego Lago &lt;beosman@gmail.com&gt;
+	 * @version 0.1 2008-09-11
+	 */</span>
+	<span class="keyword">class</span> MiClaseDeEjemplo <span class="keyword">extends</span> MiClaseBase <span class="keyword">implements</span> MiInterface {
+
+		<span class="keyword">private</span> <span class="keyword">static</span> <span class="var">$campo1</span>;
+		<span class="keyword">private</span> <span class="var">$campo2</span>;
+
+		<span class="keyword">static</span> <span class="keyword">function</span> miMetodo1() {
+		}
+
+		<span class="comment">/**
+		 * Documentación para el método 'miMetodoDos'.
+		 *
+		 * @param mixed $param1 El primer parámetro.
+		 * @param mixed $param2 El segundo parámetro.
+		 *
+		 * @return mixed Valor de retorno.
+		 */</span>
+		<span class="keyword">function</span> miMetodoDos(<span class="var">$param1</span>,<span class="var">$param2</span>) {
+		}
+
+	}
+<span class="number">?&gt;</span>
+</p>
+
+<h3>Constantes</h3>
+
+<p>
+Las constantes dentro de una clase se deben declarar todas en mayúsculas y las diferentes
+palabras que la compongan separadas por barras bajas (_). Por ejemplo:
+</p>
+
+<p class="source">
+<span class="keyword">const</span> ESTO_ES_UNA_CONSTANTE = <span class="number">0</span>;
+</p>
+
+<p>
+Otra forma también permitida aunque no recomendada es que las constantes estén escritas en
+<em>UpperCamelCase</em> pero que siempre comiencen por la letra "k" minúscula. Por ejemplo:
+</p>
+
+<p class="source">
+<span class="keyword">const</span> kEstoEsUnaConstante = <span class="number">0</span>;
+</p>
+
+<p>
+En caso de que haya varias constantes dentro de la clase, las que estén relacionadas deben
+tener los valores a la misma altura. Por ejemplo:
+</p>
+
+<p class="source">
+<span class="keyword">const</span> ENGINE_MSSQL	= <span class="string">"mssql"</span>;	<span class="comment">// Microsoft SQL</span>
+<span class="keyword">const</span> ENGINE_MYSQL	= <span class="string">"mysql"</span>;	<span class="comment">// MySQL</span>
+<span class="keyword">const</span> ENGINE_PGSQL	= <span class="string">"pgsql"</span>;	<span class="comment">// Postgre SQL</span>
+<span class="keyword">const</span> ENGINE_FIREBIRD	= <span class="string">"firebird"</span>;	<span class="comment">// Firebird</span>
+<span class="keyword">const</span> ENGINE_ORACLE	= <span class="string">"oci"</span>;	<span class="comment">// Oracle Call Interface</span>
+<span class="keyword">const</span> ENGINE_ODBC	= <span class="string">"odbc"</span>;	<span class="comment">// Open Database Connectivity</span>
+<span class="keyword">const</span> ENGINE_SQLITE	= <span class="string">"sqlite"</span>;	<span class="comment">// SQLite</span>
+</p>
+
+<p>
+Los comentarios de las constantes también deberían estar alineados verticalmente.
+</p>
+
+<p>
+En el caso de que existen varias constantes que no estén relacionadas, estas deberían
+estar separadas por una línea en blanco.
+</p>
+
+<h3>Variables</h3>
+
+<p>
+Las variables de las clases, al igual que las variables normales, deben estar escritas en
+<em>lowerCamelCase</em>. Además, es recomendable declarar cada variable en una línea diferente
+junto con su modificador de acceso (<code>public</code>, <code>private</code>, <code>protected</code>). Por ejemplo:
+</p>
+
+<p class="source">
+<span class="keyword">public</span> <span class="var">$primeraVariable</span>;
+<span class="keyword">private</span> <span class="var">$unaVariablePrivada</span>;
+<span class="keyword">protected</span> <span class="var">$variableProtegidaParaMisSubclases</span>;
+</p>
+
+<p>
+En caso de que existan varias variables relacionadas que requieran un valor de inicialización,
+éstas, al igual que las constantes, deben tener dichos valores alineados verticalmente.
+</p>
+
+<h3>Métodos</h3>
+
+<p>
+Los métodos de las clases, al igual que las funciones normales, deben estar escritos en
+<em>lowerCamelCase</em>. La forma de escribir los parámetros y el cuerpo es la misma que para las funciones normales.
+</p>
+
+<p>
+Además, a las funciones hay que incorporarles su modificador de acceso aunque, en el caso de que
+sean públicas, no es necesario incluirlo. Por ejemplo:
+</p>
+
+<p class="source">
+<span class="keyword">private</span> <span class="keyword">function</span> getRealName() {
+	<span class="comment">// código</span>
+}
+</p>
+
+<h2>Operadores</h2>
+
+<p>
+Los operadores, como <code>+</code>, <code>+=</code>, <code>-</code>, <code>-=</code>, <code>*</code>,
+<code>*=</code>, <code>/</code>, <code>/=</code>, <code>%</code>, <code>%=</code>, <code>=</code>, <code>==</code>,
+<code>===</code>, <code>!=</code>, <code>&gt;</code>, <code>&gt;=</code>, <code>&gt;&gt;</code>,
+<code>&lt;</code>, <code>&lt;=</code>, <code>&lt;&lt;</code>, <code>=&gt;</code>, <code>&amp;</code>,
+<code>&amp;&amp;</code>, <code>|</code>, <code>||</code>, <code>?</code>,
+etc., deben escribirse con espacios a ambos lados. Por ejemplo:
+</p>
+
+<p class="source">
+<span class="var">$miVariable</span> = <span class="var">$otraVariable</span> + <span class="number">1</span> - (<span class="var">$pi</span> * <span class="number">3</span>);
+</p>
+
+<p>
+Una excepción a esta regla son los operadores unarios <code>++</code> y <code>--</code> donde no es necesario (ni recomendable) poner
+un espacio antes (o después, según sea de postincremento o preincremento) de la variable que modifican.
+El siguiente ejemplo sería correcto:
+</p>
+
+<p class="source">
+<span class="var">$miVariableNumerica</span>++;
+</p>
+
+<p>
+Estas reglas de separación son útiles, por ejemplo, cuando existen varias expresiones que pueden dar
+lugar a ambigüedad:
+</p>
+
+<p class="source">
+<span class="var">$a</span> = <span class="var">$b</span>+++++<span class="var">$c</span>;
+</p>
+
+<p>
+La expresión anterior, si se siguen las directrices de separación de operadores, tendría la forma:
+</p>
+
+<p class="source">
+<span class="var">$a</span> = <span class="var">$b</span>++ + ++<span class="var">$c</span>;
+</p>
+
+<p>
+De esta forma el programador distingue perfectamente lo que hace la expresión anterior.
+</p>
+
+<h2>Expresiones booleanas</h2>
+
+<p>
+Cuando se comprueba una expresión y esta devuelve un valor booleano, es preferible hacerlo en una
+operación lógica booleana en lugar de introducirlo en una estructura de control de tipo <code>if</code>.
+Por ejemplo, en el siguiente código:
+</p>
+
+<p class="source">
+<span class="keyword">if</span>(<span class="var">$a</span> &gt; <span class="number">100</span> &amp;&amp; <span class="var">$b</span> &lt; <span class="number">50</span> &amp;&amp; <span class="var">$c</span> != <span class="number">4</span>) {
+	<span class="keyword">return</span> <span class="bool">true</span>;
+} <span class="keyword">else</span> {
+	<span class="keyword">return</span> <span class="bool">false</span>;
+}
+</p>
+
+<p>
+Es más recomendable hacerlo de la siguiente forma:
+</p>
+
+<p class="source">
+<span class="keyword">return</span> (<span class="var">$a</span> &gt; <span class="number">100</span> &amp;&amp; <span class="var">$b</span> &lt; <span class="number">50</span> &amp;&amp; <span class="var">$c</span> != <span class="number">4</span>);
+</p>
+
+<p>
+Esto es por mera sintaxis ya que el compilador genera el mismo código objeto para ambas expresiones.
+</p>
+
+<p>
+Siempre que sea posible, se deberán utilizar valores booleanos en lugar de números, es decir, si
+una variable es booleana, no se le debe asignar "0" para <code>false</code> y "1" para <code>true</code>.
+Se le deben asignar las construcciones del lenguaje <code>true</code> y <code>false</code>.
+</p>
+
+<h2>Estructuras de control</h2>
+
+<p>
+Las estructuras de control son aquellas instrucciones del lenguaje que controlan el flujo
+de ejecución, es decir, sentencias que deciden qué ejecutar en cada caso, bucles de instrucciones, etc.
+</p>
+
+<h3>if</h3>
+
+<p>
+La sentencia <code>if</code> debe escribirse de la siguiente forma:
+</p>
+
+<ul>
+<li>Entre el <code>if</code> y el primer paréntesis es recomendable que haya un espacio.</li>
+<li>La condición debe respetar las reglas de los operadores.</li>
+<li>Entre varios paréntesis anidados no es necesario que haya espacios.</li>
+<li>Siempre es recomendable que haya bloques de código entre llaves aunque haya sólo una línea en la sentencia.</li>
+<li>La llave de apertura de código debe ir en la misma línea que el <code>if</code> y la condición
+separada del último paréntesis por un espacio.</li>
+<li>Aunque haya sólo una línea en la sentencia, debe ir en la siguiente línea indentada con una tabulación.</li>
+<li>El cierre del bloque de código debe ir en una línea a parte a la misma altura de indentado que el <code>if</code>.</li>
+<li>En caso de haber parte <code>else</code>, ésta junto con la llave de apertura del siguiente bloque de código, deben
+ir en la misma línea que la llave de cierre del bloque de código del <code>if</code>.</li>
+<li>La llave de cierre del bloque del <code>if</code> y la llave de apertura del bloque del <code>else</code>
+<li>La llave de cierre de bloque de código del <code>else</code> debe ir a la misma altura de indentación que el <code>if</code>.</li>
+<li>En caso de tener varios <code>if</code> consecutivos, se puede optar por la forma separada <code>else if</code> o por la
+forma junta <code>elseif</code>.</li>
+<li>La parte del <code>elseif</code> sigue las mismas reglas que la parte del <code>else</code>.</li>
+</ul>
+
+<p>
+Un ejemplo de esta sentencia sería la siguiente:
+</p>
+
+<p class="source">
+<span class="keyword">if</span> (<span class="var">$condicion</span>) {
+	<span class="comment">// código</span>
+} <span class="keyword">else</span> <span class="keyword">if</span> (<span class="var">$miVariable</span> &gt;= <span class="number">100</span>) {
+	<span class="comment">// código</span>
+} <span class="keyword">elseif</span> (<span class="var">$condicion</span> || <span class="var">$miVariable</span> &lt; <span class="number">100</span>) {
+	<span class="comment">// código</span>
+} <span class="keyword">else</span> {
+	<span class="comment">// código</span>
+}
+</p>
+
+<h3>switch</h3>
+
+<p>
+La sentencia <code>switch</code> debe escribirse de la siguiente forma:
+</p>
+
+<ul>
+<li>Entre la palabra reservada <code>switch</code> y el paréntesis de la variable es recomendable que haya un espacio aunque no es necesario.</li>
+<li>La llave de apertura de código debe ir en la misma línea del <code>switch</code> separada por un espacio respecto del paréntesis de cierre.</li>
+<li>Los elementos <code>case</code> deben ir indentados una tabulación respecto al <code>switch</code>.</li>
+<li>El código de cada <code>case</code> debe ir en líneas distintas a las del <code>case</code> e indentado una tabulación respecto al
+<code>case</code> y dos tabulaciones respecto al <code>switch</code>.</li>
+<li>En caso de que varios <code>case</code> compartan el mismo código, éstos deben estar en líneas separadas como si fuesen independientes.</li>
+<li>El <code>break</code> de cada <code>case</code> está al mismo nivel de indentación que el código dentro del <code>case</code>
+porque no es otra cosa que código referido a dicho <code>case</code>.</li>
+<li>Siempre debería haber una cláusula <code>default</code> y ésta debe ser la última.</li>
+<li>No es necesario que la cláusula <code>default</code> lleve <code>break</code> ya que es la última del bloque.</li>
+<li>La llave de cierre del código debe ir en una línea a parte y a la misma altura de indentación que el <code>switch</code>.</li>
+</ul>
+
+<p>
+Un ejemplo de un bloque <code>switch</code> sería el siguiente:
+</p>
+
+<p class="source">
+<span class="keyword">switch</span> (<span class="var">$valor</span>) {
+	<span class="keyword">case</span> <span class="number">1</span>:
+		<span class="comment">// código</span>
+		<span class="keyword">break</span>;
+	<span class="keyword">case</span> <span class="number">2</span>:
+		<span class="comment">// código</span>
+		<span class="keyword">break</span>;
+	<span class="keyword">case</span> <span class="number">3</span>:
+	<span class="keyword">case</span> <span class="number">4</span>:
+		<span class="comment">// código</span>
+		<span class="keyword">break</span>;
+	<span class="keyword">default</span>:
+}
+</p>
+
+<h3>for</h3>
+
+<p>
+La sentencia <code>for</code> debe escribirse de la siguiente forma:
+</p>
+
+<ul>
+<li>Entre la palabra <code>for</code> y el paréntesis de apertura de las condiciones es recomendable que haya un espacio.</li>
+<li>Dentro de las condiciones del bucle deben seguirse las reglas de los operadores.</li>
+<li>Antes del punto y coma (;) y de la coma (,) no es necesario que haya un espacio pero después del mismo es recomendable que lo haya.</li>
+<li>Es recomendable que aunque sólo haya una línea de ejecución siempre se usen llaves para marcar el bloque de código.</li>
+<li>La llave de apertura del bloque de código debe estar en la misma línea del <code>for</code> separada por un espacio respecto del último paréntesis.</li>
+<li>El código dentro del <code>for</code> debe estar indentado respecto al <code>for</code> con una tabulación.</li>
+<li>La llave de cierre de código debe estar en una línea a parte e indentada a la misma altura que la palabra reservada <code>for</code>.</li>
+</ul>
+
+<p>
+Un ejemplo de un bloque <code>for</code> sería el siguiente:
+</p>
+
+<p class="source">
+<span class="keyword">for</span> (<span class="var">$i</span> = <span class="number">0</span>; <span class="var">$i</span> &lt; <span class="number">100</span>; <span class="var">$i</span>++) {
+	<span class="comment">// código</span>
+}
+</p>
+
+<h3>foreach</h3>
+
+<p>
+La sentencia <code>foreach</code> sigue las mismas reglas que la sentencia <code>for</code>:
+</p>
+
+<p class="source">
+<span class="keyword">foreach</span> (<span class="var">$array</span> <span class="keyword">as</span> <span class="var">$indice</span> =&gt; <span class="var">$valor</span>) {
+	<span class="comment">// código</span>
+}
+</p>
+
+<p>
+Sólo se debe poner el índice en el caso de que se vaya a usar.
+</p>
+
+<h3>while</h3>
+
+<p>
+La sentencia <code>while</code> se escribe de la siguiente forma:
+</p>
+
+<ul>
+<li>Entre el <code>while</code> y el paréntesis de apertura de la condición debería existir un espacio.</li>
+<li>La condición debe seguir las reglas de la escritura de operandos.</li>
+<li>Dentro de la condición se pueden hacer asignaciones a otras variables para usarlas dentro del código del bucle.</li>
+<li>Aunque sólo exista una línea de código, debería haber siempre llaves de apertura y cierre de bloque de código.</li>
+<li>La llave de apertura de código debe estar en la misma línea que el <code>while</code> y la condición separada
+un espacio del paréntesis de cierre de la condición.</li>
+<li>El código debe estar indentado una tabulación respecto de la palabra <code>while</code>.</li>
+<li>La llave de cierre debe estar en una línea a parte a la misma altura de indentación que <code>while</code>.</li>
+</ul>
+
+<p>
+Un ejemplo de escritura de la sentencia <code>while</code> sería el siguiente:
+</p>
+
+<p class="source">
+<span class="keyword">while</span> (<span class="var">$condicion</span>) {
+	<span class="comment">// código</span>
+}
+</p>
+
+<h3>do while</h3>
+
+<p>
+La sentencia <code>do while</code> se escribe de la siguiente forma:
+</p>
+
+<ul>
+<li>Aunque sólo exista una línea de código del bucle, ésta debería estar encerrada entre llaves de bloque.</li>
+<li>La palabra <code>do</code> debe estar en la primera línea junto con la llave de apertura de código separadas por un espacio.</li>
+<li>El código debe estar indentado por una tabulación respecto a la palabra <code>do</code>.</li>
+<li>La llave de cierre de código debe estar en la misma línea de la palabra <code>while</code> a la misma altura de indentación que la palabra <code>do</code>.</li>
+<li>La palabra <code>while</code> debe estar separada un espacio de la llave de cierre de bloque.</li>
+<li>La condición del <code>while</code> debería estar un espacio separada de la palabra <code>while</code>.</li>
+</ul>
+
+<p>
+Un ejemplo de un bloque <code>do while</code> sería el siguiente:
+</p>
+
+<p class="source">
+<span class="keyword">do</span> {
+	<span class="comment">// código</span>
+} <span class="keyword">while</span> (<span class="var">$condicion</span>);
+</p>
+
+<h3>? (operador ternario)</h3>
+
+<p>
+El operador ternario es una forma simplificada de escribir una sentencia <code>if</code>.
+El operador ternario se debería escribir siempre en una misma línea y encerrado entre paréntesis
+(aunque no es estrictamente necesario). Hay que seguir las reglas de los operadores.
+</p>
+
+<p>
+Tanto la condición como los bloques de código deben ser lo más pequeños posible ya que sino este
+operador estaría demasiado ofuscado. En caso de que sean demasiado grandes se debería usar una sentencia <code>if</code>.
+</p>
+
+<p>
+Un ejemplo de operador ternario sería el siguiente:
+</p>
+
+<p class="source">
+<span class="keyword">return</span> (<span class="var">$valor</span> &gt;= <span class="number">5</span> ? <span class="string">"aprobado"</span> : <span class="string">"suspenso"</span>);
+</p>
+
+<h2>Excepciones</h2>
+
+<p>
+Las excepciones son una forma de propagación de errores dentro de la aplicación.
+Las excepciones funcionan de forma similar a los objetos por lo que su guía de estilo no varía.
+</p>
+
+<p>
+Para cada categoría de errores se debería crear un tipo nuevo de excepción que bastaría
+con que extienda una excepción ya conocida o la excepción base (<code>class Exception</code>).
+</p>
+
+<p>
+Las excepciones se lanzan con el mismo nivel de indentado que la llamada a una función:
+</p>
+
+<p class="source">
+<span class="keyword">throw</span> <span class="keyword">new</span> MiExcepcion(<span class="string">"Mensaje de la excepción"</span>);
+</p>
+
+<h3>try/catch</h3>
+
+<p>
+La forma de coger las excepciones antes de que se extiendan a toda la aplicación y la
+hagan parar es mediante la sentencia <code>try/catch</code>. Esta sentencia es un aglutinador de trozos de
+código que son susceptibles de lanzar alguna excepción y sirven para capturarla y evitar
+su propagación actuando en consecuencia.
+</p>
+
+<p>
+La forma de capturar una excepción es la siguiente:
+</p>
+
+<p class="source">
+<span class="keyword">try</span> {
+	functionQueLanzaExcepcion();
+} <span class="keyword">catch</span>(Exception <span class="var">$e</span>) {
+	<span class="comment">// tratamos la excepción aunque la podemos volver a</span>
+	<span class="comment">// lanzar con un throw $e</span>
+}
+</p>
+
+<p>
+Dentro de la sentencia <code>catch</code> se puede poner cualquier tipo de excepción. Además, también
+pueden existir varios <code>catch</code> dentro del mismo bloque de código para capturar y tratar de
+forma distinta varios tipos de excepciones. Hay que recordar que el orden de captura debe
+ser el inverso al orden en el árbol de herencia de las excepciones.
+</p>
+
+<p>
+La llave de apertura del <code>try</code> debe estar en la misma línea que el propio <code>try</code>. La llave de
+cierre del <code>try</code> (o de otro <code>catch</code>), el <code>catch</code> y la llave de apertura del <code>catch</code> deben estar en
+la misma línea. La llave de cierre del último <code>catch</code> debe estar en una línea diferente.
+</p>
+
+<h3>try/catch/finally</h3>
+
+<p>
+En caso de existir la sentencia <code>finally</code>, ésta tiene el mismo estilo que el <code>catch</code>:
+</p>
+
+<p class="source">
+<span class="keyword">try</span> {
+	functionQueLanzaExcepcion();
+} <span class="keyword">catch</span>(MyException <span class="var">$e</span>) {
+	<span class="comment">// tratamos una excepción que hereda de Exception</span>
+} <span class="keyword">catch</span>(Exception <span class="var">$e</span>) {
+	<span class="comment">// ahora tratamos la excepción base</span>
+} <span class="keyword">finally</span> {
+	<span class="comment">// este código siempre se ejecuta</span>
+}
+</p>
+
+<h2>Comentarios</h2>
+
+<p>
+Los comentarios son la forma de aclarar el funcionamiento del código desarrollado así como
+generar la documentación específica de la <acronym title="Application Programmer Interface">API</acronym> por lo que dichos
+comentarios son necesarios a lo largo de todo el desarrollo.
+</p>
+
+<p>
+Existen dos tipos de comentarios: los comentarios de aclaración del código y los comentarios de documentación.
+</p>
+
+<h3>Comentarios de aclaración del código</h3>
+
+<p>Este tipo de comentarios se escribe en el medio del código para aclarar su funcionamiento. El comentario en
+cuestión se debe hacer en la línea inmediatamente superior a la línea de código fuente que se desea aclarar y
+se deben utilizar los comentarios de doble barra (<code>//</code>) de la siguiente forma:
+</p>
+
+<p class="source">
+<span class="comment">// se comprueba por si la instancia es null</span>
+<span class="keyword">if</span>(<span class="var">$instancia</span> === <span class="null">null</span>) {
+	<span class="var">$error</span> = <span class="string">"La instancia es NULL.</span>;
+}
+</p>
+
+<p>
+En caso de que la aclaración sea los suficientemente corta, se puede incluir en la misma línea de código.
+El punto y coma debe estar separado dos espacios de la primera barra invertida y el texto del comentario
+debe estar separado un espacio de la segunda barra:
+</p>
+
+<p class="source">
+<span class="var">$i</span>++;  <span class="comment">// incrementamos la variable</span>
+</p>
+
+<p>
+En caso de que el comentario aclaratorio sea bastante largo, se deben usar los comentarios multilínea con apertura
+(<code>/*</code>) y cierre (<code>*/</code>). El uso de asteriscos en cada inicio de línea es opcional aunque recomendable teniendo en
+cuenta que muchos editores los añaden automáticamente:
+</p>
+
+<p class="source">
+<span class="comment">/*
+ * Este es un comentario multilínea para aclarar el 
+ * funcionamiento de una o varias líneas de código que 
+ * son difíciles de entender por la complejidad del
+ * tratamiento de los datos.
+ */</span>
+<span class="keyword">foreach</span>(<span class="var">$datos</span> <span class="keyword">as</span> <span class="var">$indice</span> =&gt; <span class="var">$dato</span>) {
+	<span class="keyword">if</span>(validarDato(<span class="var">$dato</span>)) {
+		enviarDato(<span class="var">$indice</span>,<span class="var">$dato</span>);
+	}
+}
+</p>
+
+<p>
+El nivel de indentación de los comentarios debe ser el mismo que el de la línea que comentan y no debería
+haber ninguna línea adicional entre la última línea del comentario y la línea de código fuente que comentan.
+Además, entre los asteriscos y el texto debe haber un espacio.
+</p>
+
+<h3>Comentarios de documentación</h3>
+
+<p>
+Los comentarios de documentación son comentarios multilínea con un formato especial y con
+palabras clave interpretadas por el generador de la documentación.
+</p>
+
+<p>
+Estos comentarios se utilizan para la generación de la documentación del API del código fuente,
+tanto pública (hacia otros programadores) como privada (hacia los programadores de la aplicación).
+</p>
+
+<p>
+Los comentarios de documentación comienzan por la apertura de un comentario multilínea seguido de
+un asterisco. Cada nueva línea del comentario debe ser precedida por un asterisco y su indentación
+debe ser la misma que el primer asterisco (no la barra oblícua) de la línea de apertura del comentario.
+El final de la línea debe estar indentada a la misma altura que las líneas intermedias.
+</p>
+
+<p>
+Este tipo de comentario es igual que el comentario multilínea mencionado anteriormente añadiéndo un asterisco a la primera línea:
+</p>
+
+<p class="source">
+<span class="comment">/**
+ * Comentario de documentación de clases y funciones.
+ *
+ * Estos comentarios pueden llevar etiquetas especiales
+ * con significado dentro de la documentación general:
+ *
+ * </span><span class="commentkeyword">@author</span> <span class="comment">Diego Lago &lt;beosman@gmail.com&gt;
+ * </span><span class="commentkeyword">@version</span> <span class="comment">0.2 2008-09-02
+ */</span>
+</p>
+
+<p>
+Los comentarios de documentación deben comentar las clases, los métodos y las funciones.
+Además, es recomendable comentar las variables de las clases.
+</p>
+
+<p>
+Dentro de los comentarios de documentación, como se ha podido comprobar en el ejemplo anterior,
+pueden (y deben) existir etiquetas especiales que son interpretadas por el generador de documentación.
+Todas estas etiquetas comienzan por @ (arroba) y pueden ser las siguientes:
+</p>
+
+<ul>
+<li><code>@author</code>: Indica el autor de la clase, función, etc.</li>
+<li><code>@copyright</code>: Indica la información del copyright de un archivo o clase.</li>
+<li><code>@deprecated</code>: Indica que un elemento es antiguo y no se debe usar.</li>
+<li><code>@example</code>: Indica un archivo de ejemplo.</li>
+<li><code>@global</code>: Documenta una variable global o su uso.</li>
+<li><code>@internal</code>: Indica que es documentación interna.</li>
+<li><code>@license</code>: Indica la licencia del archivo o clase.</li>
+<li><code>@link</code>: Indica un enlace a otro elemento de documentación.</li>
+<li><code>@method</code>: Indica la implementación de un método “mágico” de la clase (PHP).</li>
+<li><code>@param</code>: En una función indica el tipo de parámetro y sus posibles valores.</li>
+<li><code>@property</code>: Indica la implementación de una propiedad “mágica” de una clase (PHP).</li>
+<li><code>@return</code>: En una función indica el tipo de retorno de una función y sus posibles valores.</li>
+<li><code>@see</code>: Indica que se debe ver además otro elemento de la documentación.</li>
+<li><code>@since</code>: Indica desde qué versión está disponible este elemento.</li>
+<li><code>@throws</code>: En una función indica el tipo de excepciones que puede lanzar.</li>
+<li><code>@todo</code>: Indica cambios futuros en el código.</li>
+<li><code>@var</code>: Documenta una variable de una clase.</li>
+<li><code>@version</code>: Indica la versión de la clase, archivo o función.</li>
+</ul>
+
+<p>
+Cada una de estas etiquetas tiene una sintaxis específica por lo que se debe examinar la
+documentación del generador de documentación para ver su sintaxis específica.
+</p>
+
+<p>
+Esta documentación, en caso de generarla, se genera en HTML por lo que se pueden incluir
+(y es recomendable) etiquetas HTML dentro de la propia documentación.
+</p>
+
+<h2>Conclusión</h2>
+
+<p>
+Estas reglas, como se comenta en el inicio de esta guía, son sólo opcionales aunque es
+muy recomendable su cumplimiento para que las distintas revisiones del código por distintas
+personas no sean demasiado complicadas y todos los integrantes del proyecto estén
+familiarizados con el mismo tipo de codificación.
+</p>
+
+<p>
+Así mismo, en caso de seguirlas, estas reglas no son estrictas por lo que se puede relajar en
+la medida de lo posible para adaptarse a todos los estilos de programación de los distintos
+integrantes del grupo de trabajo.
+</p>
+
+</div>  <!-- contents -->
+
+<div id="footer">
+Copyright &copy; <a href="mailto:beosman@gmail.com">Diego Lago</a> 2008 - <abbr title="Document Revision">DR</abbr> 20081210
+</div>
+
+</body>
+</html>
