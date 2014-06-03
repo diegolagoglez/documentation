@@ -1,8 +1,11 @@
-Documentación
-=============
+# [EN] Documentation
 
-En este repositorio irán los archivos de documentación de todos los proyectos realizados.
+This repository contains documentation files both English and Spanish.
 
-Generalmente irán en texto plano (.txt) o en HTML (.html) con un estilo común,
-aunque puede que también haya otros tipos de documentos más complejos según las
-necesidades de dicha documentación.
+Documentation format may be in plain text, markdown, HTML or any other type.
+
+# [ES] Documentación
+
+En este repositorio contiene archivos de documentación tanto en inglés como en español.
+
+El formato de la documentación puede ser texto plano, *markdown*, HTML o cualquier otro tipo.
