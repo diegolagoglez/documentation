@@ -46,9 +46,16 @@ Existen dos tipos de sistemas de control de versiones:
 
 ## Configuración
 
+--- git config ---
+
 ## Personalización
 
+--- __git_ps1 ---
+
 ## Creación de proyectos
+
+--- git init ---
+--- git clone --- (view next section)
 
 ## Gestión de código
 
@@ -66,11 +73,32 @@ El flujo de trabajo que se suele usar con Git es...
 
 ### Devolver el repositorio a un estado anterior
 
+--- git reset ---
+
 ### Deshacer un *merge* y/o un *rebase* intermedio
 
 Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio en un estado intermedio que obliga al usuario a solucionarlos. Si no se desea darles solución, tanto el *merge* como el *rebase* se pueden deshacer hasta el estado inicial mediante la opción `--abort` de ambos comandos.
 
 ## Trabajando en remoto
+
+### Configuración de repositorios remotos
+
+### Añadir referencias remotas
+
+--- git remote add ---
+
+### Clonar, enviar y recibir datos
+
+--- git clone ---
+--- git fetch/pull ---
+--- git push ---
+
+### Repositorio con varios remotos
+
+--- git remote add ---
+--- git fetch/pull *remote* *branch*
+
+### Ramas remotas
 
 ## Comandos básicos
 
