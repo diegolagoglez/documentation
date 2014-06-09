@@ -102,6 +102,171 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 
 ## Comandos básicos
 
+## Lista completa de comandos
+
+* `git`: Comando principal (llama al resto).
+* `git-add`: Añade archivos al respositorio para hacer seguimiento o indica que un archivo tiene cambios para hacer un *commit*.
+* `git-add--interactive`: Forma interactiva de `git add`.
+* `git-am`: Aplica parches recibidos por correo electrónico.
+* `git-annotate`: Sinónimo de `git blame`.
+* `git-apply`: Aplica parches a archivos y/o al índice.
+* `git-archimport`: Importa repositorios de Arch Linux.
+* `git-archive`: Exporta archivos de un repositorio.
+* `git-bisect`: Ayuda a encontrar el cambio que introdujo un error.
+* `git-bisect--helper`: 
+* `git-blame`: Indica el autor de cada modificación en cada línea.
+* `git-branch`: Crea una rama nueva.
+* `git-bundle`: Crea un archivo para enviar objectos y referencias entre repositorios.
+* `git-cat-file`: Muestra información de objectos del repositorio.
+* `git-check-attr`: Chequea attributos de Git (del archivo `.gitattributes`).
+* `git-check-ignore`: 
+* `git-check-mailmap`: 
+* `git-checkout`: Obtiene una rama o unos archivos copiándola en la copia de trabajo.
+* `git-checkout-index`: Obtiene archivos del índice copiándolos a la copia de trabajo.
+* `git-check-ref-format`: 
+* `git-cherry`: 
+* `git-cherry-pick`: 
+* `git-citool`: Herramienta gráfica para hacer *commit*.
+* `git-clean`: Elimina todos los archivos que no están bajo el control de versiones.
+* `git-clone`: Clona un repositorio en un directorio nuevo.
+* `git-column`: 
+* `git-commit`: 
+* `git-commit-tree`: 
+* `git-config`: 
+* `git-count-objects`: 
+* `git-credential`: 
+* `git-credential-cache`: 
+* `git-credential-cache--daemon`: 
+* `git-credential-store`: 
+* `git-cvsexportcommit`: 
+* `git-cvsimport`: 
+* `git-cvsserver`: 
+* `git-daemon`: 
+* `git-describe`: 
+* `git-diff`: 
+* `git-diff-files`: 
+* `git-diff-index`: 
+* `git-difftool`: 
+* `git-difftool--helper`: 
+* `git-diff-tree`: 
+* `git-fast-export`: 
+* `git-fast-import`: 
+* `git-fetch`: 
+* `git-fetch-pack`: 
+* `git-filter-branch`: 
+* `git-fmt-merge-msg`: 
+* `git-for-each-ref`: 
+* `git-format-patch`: 
+* `git-fsck`: 
+* `git-fsck-objects`: 
+* `git-gc`: 
+* `git-get-tar-commit-id`: 
+* `git-grep`: 
+* `git-gui`: 
+* `git-gui--askpass`: 
+* `git-hash-object`: 
+* `git-help`: 
+* `git-http-backend`: 
+* `git-http-fetch`: 
+* `git-http-push`: 
+* `git-imap-send`: 
+* `git-index-pack`: 
+* `git-init`: 
+* `git-init-db`: 
+* `git-instaweb`: 
+* `git-log`: 
+* `git-ls-files`: 
+* `git-ls-remote`: 
+* `git-ls-tree`: 
+* `git-mailinfo`: 
+* `git-mailsplit`: 
+* `git-merge`: 
+* `git-merge-base`: 
+* `git-merge-file`: 
+* `git-merge-index`: 
+* `git-merge-octopus`: 
+* `git-merge-one-file`: 
+* `git-merge-ours`: 
+* `git-merge-recursive`: 
+* `git-merge-resolve`: 
+* `git-merge-subtree`: 
+* `git-mergetool`: 
+* `git-mergetool--lib`: 
+* `git-merge-tree`: 
+* `git-mktag`: 
+* `git-mktree`: 
+* `git-mv`: 
+* `git-name-rev`: 
+* `git-notes`: 
+* `git-p4`: 
+* `git-pack-objects`: 
+* `git-pack-redundant`: 
+* `git-pack-refs`: 
+* `git-parse-remote`: 
+* `git-patch-id`: 
+* `git-prune`: 
+* `git-prune-packed`: 
+* `git-pull`: 
+* `git-push`: 
+* `git-quiltimport`: 
+* `git-read-tree`: 
+* `git-rebase`: 
+* `git-rebase--am`: 
+* `git-rebase--interactive`: 
+* `git-rebase--merge`: 
+* `git-receive-pack`: 
+* `git-reflog`: 
+* `git-relink`: 
+* `git-remote`: 
+* `git-remote-ext`: 
+* `git-remote-fd`: 
+* `git-remote-ftp`: 
+* `git-remote-ftps`: 
+* `git-remote-http`: 
+* `git-remote-https`: 
+* `git-remote-testsvn`: 
+* `git-repack`: 
+* `git-replace`: 
+* `git-request-pull`: 
+* `git-rerere`: 
+* `git-reset`: 
+* `git-revert`: 
+* `git-rev-list`: 
+* `git-rev-parse`: 
+* `git-rm`: 
+* `git-send-email`: 
+* `git-send-pack`: 
+* `git-shell`: 
+* `git-sh-i18n`: 
+* `git-sh-i18n--envsubst`: 
+* `git-shortlog`: 
+* `git-show`: 
+* `git-show-branch`: 
+* `git-show-index`: 
+* `git-show-ref`: 
+* `git-sh-setup`: 
+* `git-stage`: 
+* `git-stash`: 
+* `git-status`: 
+* `git-stripspace`: 
+* `git-submodule`: 
+* `git-svn`: 
+* `git-symbolic-ref`: 
+* `git-tag`: 
+* `git-unpack-file`: 
+* `git-unpack-objects`: 
+* `git-update-index`: 
+* `git-update-ref`: 
+* `git-update-server-info`: 
+* `git-upload-archive`: 
+* `git-upload-pack`: 
+* `git-var`: 
+* `git-verify-pack`: 
+* `git-verify-tag`: 
+* `git-web--browse`: 
+* `git-whatchanged`: 
+* `git-write-tree`: 
+
 ## Referencias
 
 [1] [Manual completo Git](http://git-scm.com)
