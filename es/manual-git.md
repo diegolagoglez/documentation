@@ -8,9 +8,9 @@ En este manual se hará una introducción breve y concisa del sistema de control
 
 ## Sistemas de control de versiones
 
-Un **sistema de control de versiones** es un software que se usa para llevar un seguimiento de los cambios realizados sobre un archivo o un un conjunto de ellos, además de tener un registro de los mismos y poder volver a cualquier estado anterior.
+Un **sistema de control de versiones** es un software que se usa para llevar un seguimiento de los cambios realizados sobre un archivo o un un conjunto de ellos, además de tener un registro de dichos cambios y poder volver a cualquier estado anterior.
 
-Generalmente, estos sistemas se utilizan para llevar el seguimiento del código fuente de aplicaciones de software, aunque es posible (y recomendable) utilizarlos para llevar el siguiento de cualquier tipo de información.
+Generalmente, estos sistemas se utilizan para llevar el seguimiento del código fuente de aplicaciones de software, aunque es posible utilizarlos para llevar el siguiento de cualquier tipo de información.
 
 Los sistemas de control de versiones comenzaron a desarrollarse y utilizarse cuando los proyectos de software eran demasiado grandes para tener un control de su código y, sobre todo, cuando varios equipos de personas empezaron a trabajar simultáneamente sobre ellos, apareciendo la necesidad de controlar quién cambia qué y de poder volver a versiones anteriores para deshacer cambios con errores.
 
@@ -40,9 +40,17 @@ Existen dos tipos de sistemas de control de versiones:
 
 * Centralizados:
 
+Existe un repositorio maestro donde todos los usuarios acceden tanto para hacer hacer *checkout* como para hacer *commit*. Un ejemplo de sistema de control de versiones centralizado es Subversion.
+
 * Distribuidos:
 
+No existe un repositorio maestro. Cada usuario tiene una copia completa del repositorio y hace las modificaciones que considera oportunas. Una vez hechas, realiza la que se llama un *pull request* para indicar a otro usuario que el primero quiere incorporar sus cambios en el segundo.
+
+Un repositorio distribuido también puede funcionar como repositorio centralizdo siempre que todos los usuarios tengan conocimiento de este.
+
 ## Git
+
+Git es un sistema de control de versiones distribuido creado por Linus Torvalds en 2005. Todo el proyecto y toda la información asociada a él están en la máquina del desarrollador, por lo que no es necesario ningún repositorio central. Cuando dicho desarrollador quiere incluir sus cambios en el repositorio de otro desarrollador, este inicia un *pull request* (que puede ser realizdo de varias formas).
 
 ## Configuración
 
