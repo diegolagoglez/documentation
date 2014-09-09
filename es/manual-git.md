@@ -137,19 +137,19 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-citool`: Herramienta gráfica para hacer *commit*.
 * `git-clean`: Elimina todos los archivos que no están bajo el control de versiones.
 * `git-clone`: Clona un repositorio en un directorio nuevo.
-* `git-column`: 
-* `git-commit`: 
-* `git-commit-tree`: 
-* `git-config`: 
-* `git-count-objects`: 
-* `git-credential`: 
+* `git-column`: Muestra datos en columnas.
+* `git-commit`: Guarda cambios en el repositorio.
+* `git-commit-tree`: Crea un nuevo objeto de tipo *commit*.
+* `git-config`: Muestra/guarda variables de Git (locales o globales).
+* `git-count-objects`: Cuenta objetos de Git y el espacio ocupado en disco.
+* `git-credential`: Recupera y guarda credenciales de usuario (*scripting*).
 * `git-credential-cache`: 
 * `git-credential-cache--daemon`: 
 * `git-credential-store`: 
-* `git-cvsexportcommit`: 
-* `git-cvsimport`: 
+* `git-cvsexportcommit`: Exporta un *commit* a un elemento de CVS.
+* `git-cvsimport`: Rescata tus datos de otro SCM al que la gente le gusta odiar.
 * `git-cvsserver`: 
-* `git-daemon`: 
+* `git-daemon`: Un servidor muy sencillo para Git.
 * `git-describe`: 
 * `git-diff`: 
 * `git-diff-files`: 
@@ -277,5 +277,5 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 
 ## Referencias
 
-[1] [Manual completo Git](http://git-scm.com)
-[2] [Git en la Wikipedia](http://es.wikipedia.org/wiki/Git)
+- [1] [Manual completo Git](http://git-scm.com)
+- [2] [Git en la Wikipedia](http://es.wikipedia.org/wiki/Git)
