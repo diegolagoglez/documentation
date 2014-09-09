@@ -161,34 +161,34 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-fast-import`: *Backend* para importadores de datos a Git.
 * `git-fetch`: Descarga objetos y referencias desde un repositorio remoto.
 * `git-fetch-pack`: Descarga los elementos que faltan de un repositorio remoto.
-* `git-filter-branch`: 
-* `git-fmt-merge-msg`: 
-* `git-for-each-ref`: 
-* `git-format-patch`: 
-* `git-fsck`: 
-* `git-fsck-objects`: 
-* `git-gc`: 
-* `git-get-tar-commit-id`: 
-* `git-grep`: 
-* `git-gui`: 
-* `git-gui--askpass`: 
-* `git-hash-object`: 
-* `git-help`: 
+* `git-filter-branch`: Reescribe ramas.
+* `git-fmt-merge-msg`: Genera un mensaje para un *merge commit*.
+* `git-for-each-ref`: Muestra información para cada referencia.
+* `git-format-patch`: Prepara parches para enviar por correo electrónico.
+* `git-fsck`: Verifica la conectividad y la validez de los objetos de la base de datos.
+* `git-fsck-objects`: Sinónimo de `git-fsck`.
+* `git-gc`: Limpia archivos innecesarios y optimiza el repositorio local.
+* `git-get-tar-commit-id`: Extrae un ID de *commit* creado con `git archive`.
+* `git-grep`: Muestra líneas que coinciden con un patrón de los archivos del repositorio.
+* `git-gui`: Interfaz gráfica portable para Git.
+* `git-gui--askpass`: Diálog de petición de contraseña para la interfaz gráfica de Git.
+* `git-hash-object`: Computa el ID de un objeto y, opcionalmente, crea un *blob* desde un archivo.
+* `git-help`: Muestra la ayuda.
 * `git-http-backend`: 
 * `git-http-fetch`: 
 * `git-http-push`: 
 * `git-imap-send`: 
 * `git-index-pack`: 
-* `git-init`: 
+* `git-init`: Inicializa un repositorio en un directorio o reinicializa un repositorio existente.
 * `git-init-db`: 
 * `git-instaweb`: 
-* `git-log`: 
-* `git-ls-files`: 
+* `git-log`: Muestra información de los *commits*.
+* `git-ls-files`: Muestra información de los archivos en la copia de trabajo y en el índice.
 * `git-ls-remote`: 
 * `git-ls-tree`: 
 * `git-mailinfo`: 
 * `git-mailsplit`: 
-* `git-merge`: 
+* `git-merge`: Junta/mezcla dos o más historias de desarrollo en una.
 * `git-merge-base`: 
 * `git-merge-file`: 
 * `git-merge-index`: 
@@ -203,9 +203,9 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-merge-tree`: 
 * `git-mktag`: 
 * `git-mktree`: 
-* `git-mv`: 
+* `git-mv`: Mueve o renombra un archivo, un directorio o un enlace simbólico.
 * `git-name-rev`: 
-* `git-notes`: 
+* `git-notes`: Añade o inspecciona notas de objetos.
 * `git-p4`: 
 * `git-pack-objects`: 
 * `git-pack-redundant`: 
