@@ -150,17 +150,17 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-cvsimport`: Rescata tus datos de otro SCM al que la gente le gusta odiar.
 * `git-cvsserver`: 
 * `git-daemon`: Un servidor muy sencillo para Git.
-* `git-describe`: 
-* `git-diff`: 
-* `git-diff-files`: 
-* `git-diff-index`: 
-* `git-difftool`: 
+* `git-describe`: Muestra la etiqueta (*tag*) más reciente alcanzable desde un *commit* dado.
+* `git-diff`: Muestra diferencias entre *commits*, entre un *commit* y la copia de trabajo, etc.
+* `git-diff-files`: Muestra diferencias entre archivos, la copia de trabajo y el índice.
+* `git-diff-index`: Compara un árbol de directorios con la copia de trabajo o el índice.
+* `git-difftool`: Muestra cambios entre archivos usando herramientas comunes de *diff*.
 * `git-difftool--helper`: 
-* `git-diff-tree`: 
-* `git-fast-export`: 
-* `git-fast-import`: 
-* `git-fetch`: 
-* `git-fetch-pack`: 
+* `git-diff-tree`: Compara el contenido y el modo de los archivos de dos árboles de directorios.
+* `git-fast-export`: Exportador de datos de Git.
+* `git-fast-import`: *Backend* para importadores de datos a Git.
+* `git-fetch`: Descarga objetos y referencias desde un repositorio remoto.
+* `git-fetch-pack`: Descarga los elementos que faltan de un repositorio remoto.
 * `git-filter-branch`: 
 * `git-fmt-merge-msg`: 
 * `git-for-each-ref`: 
