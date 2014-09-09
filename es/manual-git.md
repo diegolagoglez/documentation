@@ -214,8 +214,8 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-patch-id`: 
 * `git-prune`: 
 * `git-prune-packed`: 
-* `git-pull`: 
-* `git-push`: 
+* `git-pull`: Recupera datos de un repositorio y los reintegra en el repositorio local (`fetch`+`merge`).
+* `git-push`: Actualiza referencias y objetos en un repositorio remoto desde el repositorio local.
 * `git-quiltimport`: 
 * `git-read-tree`: 
 * `git-rebase`: 
@@ -223,9 +223,9 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-rebase--interactive`: 
 * `git-rebase--merge`: 
 * `git-receive-pack`: 
-* `git-reflog`: 
-* `git-relink`: 
-* `git-remote`: 
+* `git-reflog`: Gestiona información del *reflog*.
+* `git-relink`: Crea enlaces *duros* a objetos en repositorios locales.
+* `git-remote`: Gestiona el conjunto de repositorios con seguimiento.
 * `git-remote-ext`: 
 * `git-remote-fd`: 
 * `git-remote-ftp`: 
@@ -236,12 +236,12 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-repack`: 
 * `git-replace`: 
 * `git-request-pull`: 
-* `git-rerere`: 
-* `git-reset`: 
-* `git-revert`: 
-* `git-rev-list`: 
+* `git-rerere`: Reusa la resolución registrada de *merges* con conflicto.
+* `git-reset`: Revierte `HEAD` al estado indicado.
+* `git-revert`: Revierte *commits*.
+* `git-rev-list`: Muestra *commits* en order cronológico inverso.
 * `git-rev-parse`: 
-* `git-rm`: 
+* `git-rm`: Borra archivos de la copia de trabajo y del índice.
 * `git-send-email`: 
 * `git-send-pack`: 
 * `git-shell`: 
