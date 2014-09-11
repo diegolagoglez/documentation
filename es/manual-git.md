@@ -244,23 +244,23 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-rm`: Borra archivos de la copia de trabajo y del índice.
 * `git-send-email`: 
 * `git-send-pack`: 
-* `git-shell`: 
-* `git-sh-i18n`: 
+* `git-shell`: *Shell* con acceso restringido a Git.
+* `git-sh-i18n`: Librería de *shell* para acceso a `gettext.sh`.
 * `git-sh-i18n--envsubst`: 
-* `git-shortlog`: 
-* `git-show`: 
-* `git-show-branch`: 
-* `git-show-index`: 
-* `git-show-ref`: 
+* `git-shortlog`: Sintetiza la salida de `git log`.
+* `git-show`: Muestra varios tipos de objetos (*commits*, etc.).
+* `git-show-branch`: Muestra ramas y sus *commits*.
+* `git-show-index`: Muestra un archivo de índice empaquetado.
+* `git-show-ref`: Lista referencias en un repositorio local.
 * `git-sh-setup`: 
-* `git-stage`: 
-* `git-stash`: 
-* `git-status`: 
-* `git-stripspace`: 
-* `git-submodule`: 
+* `git-stage`: Sinónimo para `git add`.
+* `git-stash`: Guarda los cambios en una copia de trabajo sin modificar el respositorio.
+* `git-status`: Muestra el estdo de la copia de trabajo.
+* `git-stripspace`: Borra espacios innecesarios en el texto (por ejemplo, para el mensaje de *commit*).
+* `git-submodule`: Gestiona submódulos.
 * `git-svn`: 
-* `git-symbolic-ref`: 
-* `git-tag`: 
+* `git-symbolic-ref`: Lee, modifica o borra referencias simbólicas.
+* `git-tag`: Manipula etiquetas firmadas con GPG.
 * `git-unpack-file`: 
 * `git-unpack-objects`: 
 * `git-update-index`: 
@@ -268,11 +268,11 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-update-server-info`: 
 * `git-upload-archive`: 
 * `git-upload-pack`: 
-* `git-var`: 
+* `git-var`: Muestra una variable lógica de Git.
 * `git-verify-pack`: 
 * `git-verify-tag`: 
-* `git-web--browse`: 
-* `git-whatchanged`: 
+* `git-web--browse`: Script de Git para lanzar un navegador de Internet.
+* `git-whatchanged`: Muestra los logs con las diferencias que se han introducido en cada *commit*.
 * `git-write-tree`: 
 
 ## Referencias
