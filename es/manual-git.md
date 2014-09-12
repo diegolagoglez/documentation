@@ -133,7 +133,7 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-checkout-index`: Obtiene archivos del índice copiándolos a la copia de trabajo.
 * `git-check-ref-format`: 
 * `git-cherry`: 
-* `git-cherry-pick`: 
+* `git-cherry-pick`: Aplica cambios introducidos por diferentes *commits*.
 * `git-citool`: Herramienta gráfica para hacer *commit*.
 * `git-clean`: Elimina todos los archivos que no están bajo el control de versiones.
 * `git-clone`: Clona un repositorio en un directorio nuevo.
@@ -174,31 +174,31 @@ Si durante un *merge* o un *rebase* surgen conflictos, Git deja el repositorio e
 * `git-gui--askpass`: Diálog de petición de contraseña para la interfaz gráfica de Git.
 * `git-hash-object`: Computa el ID de un objeto y, opcionalmente, crea un *blob* desde un archivo.
 * `git-help`: Muestra la ayuda.
-* `git-http-backend`: 
-* `git-http-fetch`: 
-* `git-http-push`: 
-* `git-imap-send`: 
+* `git-http-backend`: Implementación en el lado del servidor de Git a través de HTTP.
+* `git-http-fetch`: Descarga datos de un repositorio de Git a través de HTTP.
+* `git-http-push`: Envía datos de repositorios de Git a través de HTTP/DAV.
+* `git-imap-send`: Envía colecciones de cambios desde la entrada estándar (*stdin*) a una carpeta IMAP.
 * `git-index-pack`: 
 * `git-init`: Inicializa un repositorio en un directorio o reinicializa un repositorio existente.
-* `git-init-db`: 
-* `git-instaweb`: 
+* `git-init-db`: Sinónimo de `git init`.
+* `git-instaweb`: Lanza un navegador web para examinar tu repositorio de Git.
 * `git-log`: Muestra información de los *commits*.
 * `git-ls-files`: Muestra información de los archivos en la copia de trabajo y en el índice.
-* `git-ls-remote`: 
-* `git-ls-tree`: 
-* `git-mailinfo`: 
-* `git-mailsplit`: 
+* `git-ls-remote`: Lista referencias en un repositorio remoto.
+* `git-ls-tree`: Lista el contenido de un objeto de tipo árbol.
+* `git-mailinfo`: Extrae el parche y la autoría de un mensaje de correo electrónico.
+* `git-mailsplit`: Divide mensajes de un archivo *mbox* de correo de UNIX.
 * `git-merge`: Junta/mezcla dos o más historias de desarrollo en una.
-* `git-merge-base`: 
-* `git-merge-file`: 
-* `git-merge-index`: 
+* `git-merge-base`: Busca tantos ascendientes comunes buenos como sea posible para un *merte*.
+* `git-merge-file`: Ejecuta un *three-way merge* en archivos.
+* `git-merge-index`: Ejecuta un *merge* para archivos que necesitan ser fusionados.
 * `git-merge-octopus`: 
-* `git-merge-one-file`: 
+* `git-merge-one-file`: Programa que ayuda a `git merge-file`.
 * `git-merge-ours`: 
 * `git-merge-recursive`: 
 * `git-merge-resolve`: 
 * `git-merge-subtree`: 
-* `git-mergetool`: 
+* `git-mergetool`: Ejecuta las herramientas de resolución de conflictos.
 * `git-mergetool--lib`: 
 * `git-merge-tree`: 
 * `git-mktag`: 
