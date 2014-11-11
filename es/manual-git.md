@@ -44,7 +44,7 @@ Existe un repositorio maestro donde todos los usuarios acceden tanto para hacer 
 
 * Distribuidos:
 
-No existe un repositorio maestro. Cada usuario tiene una copia completa del repositorio y hace las modificaciones que considera oportunas. Una vez hechas, realiza la que se llama un *pull request* para indicar a otro usuario que el primero quiere incorporar sus cambios en el segundo.
+No existe un repositorio maestro. Cada usuario tiene una copia completa del repositorio y hace las modificaciones que considera oportunas. Una vez hechas, realiza *push* para incorporar sus cambios en otro repositorio (bien sea central o de otro usuario).
 
 Un repositorio distribuido también puede funcionar como repositorio centralizdo siempre que todos los usuarios tengan conocimiento de este.
 
@@ -77,11 +77,24 @@ Existen varios tipos de flujos de trabajo. Entre ellos están:
 
 El flujo de trabajo que se suele usar con Git es...
 
+## Integración de ramas
+
+-- git merge
+-- git merge --no-commit
+-- git merge --no-ff / --ff
+-- git rebase
+
 ## Deshaciendo cosas
 
 ### Devolver el repositorio a un estado anterior
 
 --- git reset ---
+
+### Deshacer un *merge*
+
+--- git reset --hard <commit id> : Totalmente deshecho.
+
+--- git reset <commit id> : Deja el merge hecho pero sin hacer el commit.
 
 ### Deshacer un *merge* y/o un *rebase* intermedio
 
